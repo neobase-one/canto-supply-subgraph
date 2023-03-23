@@ -1,0 +1,30 @@
+specVersion: 0.0.5
+description: Canto Token Supply
+repository: https://github.com/neobase-one/canto-supply-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: cosmos
+    name: Canto
+    network: canto
+    source:
+      startBlock: 0
+    mapping:
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TotalSupply
+        - HourlyTotalSupply
+        - DailyTotalSupply
+      eventHandlers:
+        # mint
+        - event: coinbase
+          handler: handleCoinbase
+        - event: coin_received
+          handler: handleCoinReceived
+        # burn
+        - event: burn
+          handler: handleBurn
+        - event: coin_spent
+          handler: handleCoinSpent
+      file: ./src/mappings/handlers.ts

@@ -1,0 +1,22 @@
+type TokenSupply @entity {
+    id: ID!
+    totalSupply: BigDecimal!
+    totalMinted: BigDecimal!
+    totalBurned: BigDecimal!
+}
+
+type HourlyTokenSupply @entity {
+    id: ID!
+    hour: Int! # unix time of start of hour
+    totalSupply: BigDecimal!
+    totalMinted: BigDecimal!
+    totalBurned: BigDecimal!
+}
+
+type DailyTokenSupply @entity {
+    id: ID!
+    date: Int! # unix time of start of day
+    totalSupply: BigDecimal!
+    totalMinted: BigDecimal!
+    totalBurned: BigDecimal!
+}
